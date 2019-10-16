@@ -73,8 +73,11 @@ xcloud-access-gateway
 ### controller层规范
 N/A。
 ### mapper层规范
-N/A。
+* 命名规范：表名首字母大写+Mapper后缀。
+* mapper中SQL尽量采用单表操作。
 ### model层规范
-N/A。
+* 用于定义与数据库表对应的JavaBean。
+* 命名规范：表名首字母大写。
 ### service层规范
-N/A。
+* 命名规范：表名首字大写+Service后缀，或功能名+Service后缀。
+* service中方法参数，禁止使用Map类型，使用自定义Bean(如：model、entity层)。
