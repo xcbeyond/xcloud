@@ -13,4 +13,12 @@
 
     <description>异常处理</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.xcbeyond.xcloud.common.core</groupId>
+            <artifactId>xcloud-commom-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>
