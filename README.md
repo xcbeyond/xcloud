@@ -11,9 +11,9 @@
 项目名称暂定为**xcloud**，称之为**微服务统一开放平台**。项目工程结构如下：
 ```
 xcloud
-    |--- xcloud-commom         公共模块
-            |--- xcloud-commom-core            核心公共包(工具类、常量类等)
-            |--- xcloud-commom-exception       异常处理
+    |--- xcloud-common         公共模块
+            |--- xcloud-common-core            核心公共包(工具类、常量类等)
+            |--- xcloud-common-exception       异常处理
     |--- xcloud-system         系统配置模块
             |--- xcloud-system-registry        注册中心
             |--- xcloud-system-config          配置中心
@@ -64,20 +64,30 @@ xcloud-access-gateway
 ### 编码规范
 #### 包（package）规范
 所有的包名以com.xcbeyond.xcloud作为开头，后续为具体的模块名、子模块名、功能名等，如：com.xcbeyond.xcloud.access.gateway.service
-### 类（Class）规范
+#### 类（Class）规范
 类名是一个名词或名词组合，采用大小写混合的方式，每个单词的首字母大写。尽量使你的类名简洁而富于描述含义。使用完整单词，避免缩写词(除非该缩写词被更广泛使用，像URL，HTML)。
-### 接口(Interfaces)规范
+#### 接口(Interfaces)规范
 大小写规则与类名相似，在每个接口前加一个字母I，与类进行区别。实现类，则去掉前缀字母I，并加后缀impl。
-### 方法(Methods)规范
+#### 方法(Methods)规范
 方法名是一个动词，采用大小写混合的方式，第一个单词的首字母小写，其后单词的首字母大写。
-### controller层规范
+#### controller层规范
 N/A。
-### mapper层规范
+#### mapper层规范
 * 命名规范：表名首字母大写+Mapper后缀。
 * mapper中SQL尽量采用单表操作。
-### model层规范
+#### model层规范
 * 用于定义与数据库表对应的JavaBean。
 * 命名规范：表名首字母大写。
-### service层规范
+#### service层规范
 * 命名规范：表名首字大写+Service后缀，或功能名+Service后缀。
 * service中方法参数，禁止使用Map类型，使用自定义Bean(如：model、entity层)。
+
+### 技术选型
+**后端技术:**  
+
+| 技术框架 | 名称 | 版本 | 官方资料 |
+| --- | --- | --- | --- |
+| Spring Boot | 基础框架 | 2.2.0.RELEASE | https://spring.io/projects/spring-boot |
+| Spring Cloud | 微服务治理框架 | Greenwich.SR3 | https://spring.io/projects/spring-cloud |
+
+**前端技术:**
