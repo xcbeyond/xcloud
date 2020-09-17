@@ -11,6 +11,7 @@
 
     <modules>
         <module>xcloud-common</module>
+        <module>xcloud-config</module>
         <module>xcloud-system</module>
         <module>xcloud-access</module>
         <module>xcloud-management</module>
