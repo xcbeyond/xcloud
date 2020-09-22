@@ -14,11 +14,12 @@ xcloud
     |--- xcloud-common         公共模块
             |--- xcloud-common-core            核心公共包(工具类、常量类等)
             |--- xcloud-common-exception       异常处理
-    |--- xcloud-system         系统配置模块
-            |--- xcloud-system-registry        注册中心
-            |--- xcloud-system-config          配置中心
-            |--- xcloud-system-monitor         系统监控
+    |--- xcloud-registry       注册中心
+            |--- xcloud-registry-eureka        注册中心-Eureka
             | …… 
+    |--- xcloud-config         配置中心
+            |--- xcloud-config-apollo       Apollo配置中心
+            | ……
     |--- xcloud-access         前置接入层
             |--- xcloud-access-nginx        前置代理
             |--- xcloud-access-gateway      API网关
@@ -82,12 +83,87 @@ N/A。
 * 命名规范：表名首字大写+Service后缀，或功能名+Service后缀。
 * service中方法参数，禁止使用Map类型，使用自定义Bean(如：model、entity层)。
 
-### 技术选型
-**后端技术:**  
+## 技术选型
+### 前端技术
+N/A。
+
+### 后端技术  
 
 | 技术框架 | 名称 | 版本 | 官方资料 |
 | --- | --- | --- | --- |
 | Spring Boot | 基础框架 | 2.2.0.RELEASE | https://spring.io/projects/spring-boot |
 | Spring Cloud | 微服务治理框架 | Greenwich.SR3 | https://spring.io/projects/spring-cloud |
+| Apollo | 携程分布式配置中心 | 1.7.1 | https://github.com/ctripcorp/apollo |
 
-**前端技术:**
+## 环境搭建&部署
+### 调试环境搭建
+#### xcloud-config-apollo
+1. 创建数据库
+
+Apollo服务端共有两个数据库：
+* ApolloPortalDB
+* ApolloConfigDB
+
+在项目`xcloud\xcloud-config\xcloud-config-apollo\scripts`目录下，提供了对应的初始化SQL脚本`apolloconfigdb.sql`、`apolloportaldb.sql`。
+
+通过各种MySQL客户端分别导入两个SQL脚本。（可根据个人喜好选择MySQL客户端，如：Navicat、IDEA 数据库插件等）
+
+2. 启动ConfigService&&AdminService
+
+同时启动`apollo-configservice`和`apollo-adminservice`项目，基于`apollo-assembly`项目启动。
+
+1）IDEA配置。
+
+![](./doc/images/IDEA_ApolloApplication_Configurations.png)
+
+* Main class：`com.ctrip.framework.apollo.assembly.ApolloApplication`
+
+* VM options：
+
+  > -Dapollo_profile=github
+  > -Dspring.datasource.url=jdbc:mysql://localhost:3306/ApolloConfigDB?characterEncoding=utf8&serverTimezone=UTC
+  > -Dspring.datasource.username=root
+  > -Dspring.datasource.password=123456
+
+* Program arguments：`--configservice --adminservice`
+* Use classpath of module：`apollo-assembly`
+
+2）启动`apollo-assembly`项目。
+
+启动时间较慢，请耐心等待。（启动开始会有一些错误，请忽略！）
+
+能打开http://127.0.0.1:8080/，并发现`APOLLO-ADMINSERVICE`、`APOLLO-CONFIGSERVICE`已注册到Eureka中，则代表启动成功。
+
+![](./doc/images/Apollo_Eureka.png)
+
+3. 启动PortalService
+
+1）IDEA配置。
+
+![](./doc/images/IDEA_PortalApplication_Configurations.png)
+
+* Main class：`com.ctrip.framework.apollo.portal.PortalApplication`
+
+* VM options：
+
+  > -Dapollo_profile=github,auth
+  > -Ddev_meta=http://localhost:8080/
+  > -Dserver.port=8070
+  > -Dspring.datasource.url=jdbc:mysql://localhost:3306/ApolloPortalDB?characterEncoding=utf8&serverTimezone=UTC
+  > -Dspring.datasource.username=root
+  > -Dspring.datasource.password=123456
+
+* Use classpath of module：`apollo-portal`
+
+2）启动`apollo-portal`项目。
+
+打开http://127.0.0.1:8070/，登录进入Apollo配置中心。
+
+> 内置账号：
+>
+> ​	username：Apollo
+>
+> ​	password：admin
+
+![](./doc/images/Apollo_portal.png)
+
