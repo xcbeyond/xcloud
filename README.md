@@ -132,7 +132,7 @@ Apollo服务端共有两个数据库：
 
 启动时间较慢，请耐心等待。（启动开始会有一些错误，请忽略！）
 
-能打开http://127.0.0.1:8080/，并发现`APOLLO-ADMINSERVICE`、`APOLLO-CONFIGSERVICE`已注册到Eureka中，则代表启动成功。
+能打开`http://127.0.0.1:8080/`，并发现`APOLLO-ADMINSERVICE`、`APOLLO-CONFIGSERVICE`已注册到Eureka中，则代表启动成功。
 
 ![](./doc/images/Apollo_Eureka.png)
 
@@ -146,18 +146,18 @@ Apollo服务端共有两个数据库：
 
 * VM options：
 
-  > -Dapollo_profile=github,auth
-  > -Ddev_meta=http://localhost:8080/
-  > -Dserver.port=8070
-  > -Dspring.datasource.url=jdbc:mysql://localhost:3306/ApolloPortalDB?characterEncoding=utf8&serverTimezone=UTC
-  > -Dspring.datasource.username=root
-  > -Dspring.datasource.password=123456
+  > -Dapollo_profile=github,auth  
+  > -Ddev_meta=http://localhost:8080/  
+  > -Dserver.port=8070  
+  > -Dspring.datasource.url=jdbc:mysql://localhost:3306/ApolloPortalDB?characterEncoding=utf8&serverTimezone=UTC  
+  > -Dspring.datasource.username=root  
+  > -Dspring.datasource.password=123456  
 
 * Use classpath of module：`apollo-portal`
 
 2）启动`apollo-portal`项目。
 
-打开http://127.0.0.1:8070/，登录进入Apollo配置中心。
+打开`http://127.0.0.1:8070/`，登录进入Apollo配置中心。
 
 > 内置账号：
 >
