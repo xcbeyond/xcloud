@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.xcbeyond.xcloud.middleware</groupId>
         <artifactId>xcloud-middleware</artifactId>
-        <version>1.0</version>
+        <version>${revision}</version>
     </parent>
 
     <groupId>com.xcbeyond.xcloud.middleware.mysql</groupId>
